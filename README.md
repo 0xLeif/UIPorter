@@ -1,6 +1,6 @@
 # UIPorter
 
-A description of this package.
+iOS Version Value Port; Use different values for different iOS versions.
 
 ## Basic Example
 
