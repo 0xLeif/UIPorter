@@ -75,3 +75,21 @@ jobs:
       
     - name: Run tests
       run: xcodebuild test -destination 'name=iPhone 8' -scheme 'UIPorter-Package'
+    
+  macOS-10_10:
+    runs-on: macOS-10.10
+    strategy:
+          matrix:
+            destination: ['platform=iOS Simulator,OS=11.0,name=iPhone 8']
+            xcode: ['/Applications/Xcode_12.app/Contents/Developer']
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Switch to Xcode 12
+      run: sudo xcode-select --switch /Applications/Xcode_12.app
+      
+    - name: Generate xcodeproj
+      run: swift package generate-xcodeproj
+      
+    - name: Run tests
+      run: xcodebuild test -destination 'name=iPhone 8' -scheme 'UIPorter-Package'
