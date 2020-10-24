@@ -5,6 +5,9 @@ final class iOSPorterTests: XCTestCase {
     func testPorterVersion_default() {
         let porter = iOSPorter(default: "default value")
         
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
+        
         XCTAssertNil(porter.version)
         XCTAssertEqual(porter.value, "default value")
     }
@@ -33,6 +36,9 @@ final class iOSPorterTests: XCTestCase {
             XCTAssert(false)
         }
         
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
+        
         XCTAssertNotEqual(porter.value, "default value")
     }
     
@@ -48,6 +54,9 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 13", for: .v13)
         porter.add("IOS 12", for: .v12)
         porter.add("IOS 11", for: .v11)
+        
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
         
         XCTAssertEqual(porter.value, "IOS 11")
         XCTAssertEqual(porter.version, .v11)
@@ -65,6 +74,9 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 13", for: .v13)
         porter.add("IOS 12", for: .v12)
         porter.add("IOS 11", for: .v11)
+        
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
         
         XCTAssertEqual(porter.value, "IOS 11")
         XCTAssertEqual(porter.version, .v11)
@@ -94,6 +106,9 @@ final class iOSPorterTests: XCTestCase {
         } else {
             XCTAssert(false)
         }
+        
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
     }
     
     func testPreferredPorter_missingValue() {
@@ -119,6 +134,9 @@ final class iOSPorterTests: XCTestCase {
         } else {
             XCTAssert(false)
         }
+        
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
     }
     
     static var allTests = [

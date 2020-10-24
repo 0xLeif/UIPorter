@@ -1,4 +1,8 @@
-public enum iOSVersion: Hashable {
+public enum iOSVersion: Int, Hashable, Comparable {
+    public static func < (lhs: iOSVersion, rhs: iOSVersion) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+    
     case v11
     case v12
     case v13
@@ -28,7 +32,7 @@ public class iOSPorter<Value> {
         
         if #available(iOS 13.0, *) {
             if let version = iOSVersion.preferredVersion,
-               version != .v14,
+               version <= .v13,
                let _ = ports[version] {
                 return version
             } else if let _ = ports[.v13] {
@@ -38,8 +42,7 @@ public class iOSPorter<Value> {
         
         if #available(iOS 12.0, *) {
             if let version = iOSVersion.preferredVersion,
-               version != .v14,
-               version != .v13,
+               version <= .v12,
                let _ = ports[version] {
                 return version
             } else if let _ = ports[.v12] {
@@ -49,9 +52,7 @@ public class iOSPorter<Value> {
         
         if #available(iOS 11.0, *) {
             if let version = iOSVersion.preferredVersion,
-               version != .v14,
-               version != .v13,
-               version != .v12,
+               version <= .v11,
                let _ = ports[version] {
                 return version
             } else if let _ = ports[.v11] {
