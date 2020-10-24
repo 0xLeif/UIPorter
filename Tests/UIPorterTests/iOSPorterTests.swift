@@ -5,8 +5,8 @@ final class iOSPorterTests: XCTestCase {
     func testPorterVersion_default() {
         let porter = iOSPorter(default: "default value")
         
-        XCTAssertNil(porter.portVersion)
-        XCTAssertEqual(porter.port, "default value")
+        XCTAssertNil(porter.version)
+        XCTAssertEqual(porter.value, "default value")
     }
     
     func testPorterVersion() {
@@ -18,22 +18,22 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 11", for: .v11)
         
         if #available(iOS 14.0, *) {
-            XCTAssertEqual(porter.port, "IOS 14")
-            XCTAssertEqual(porter.portVersion, .v14)
+            XCTAssertEqual(porter.value, "IOS 14")
+            XCTAssertEqual(porter.version, .v14)
         } else if #available(iOS 13.0, *) {
-            XCTAssertEqual(porter.port, "IOS 13")
-            XCTAssertEqual(porter.portVersion, .v13)
+            XCTAssertEqual(porter.value, "IOS 13")
+            XCTAssertEqual(porter.version, .v13)
         } else if #available(iOS 12.0, *) {
-            XCTAssertEqual(porter.port, "IOS 12")
-            XCTAssertEqual(porter.portVersion, .v12)
+            XCTAssertEqual(porter.value, "IOS 12")
+            XCTAssertEqual(porter.version, .v12)
         } else if #available(iOS 11.0, *) {
-            XCTAssertEqual(porter.port, "IOS 11")
-            XCTAssertEqual(porter.portVersion, .v11)
+            XCTAssertEqual(porter.value, "IOS 11")
+            XCTAssertEqual(porter.version, .v11)
         } else {
             XCTAssert(false)
         }
         
-        XCTAssertNotEqual(porter.port, "default value")
+        XCTAssertNotEqual(porter.value, "default value")
     }
     
     func testPorterForcedVersion() {
@@ -49,8 +49,8 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 12", for: .v12)
         porter.add("IOS 11", for: .v11)
         
-        XCTAssertEqual(porter.port, "IOS 11")
-        XCTAssertEqual(porter.portVersion, .v11)
+        XCTAssertEqual(porter.value, "IOS 11")
+        XCTAssertEqual(porter.version, .v11)
     }
     
     func testPorterPreferredVersion() {
@@ -66,8 +66,8 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 12", for: .v12)
         porter.add("IOS 11", for: .v11)
         
-        XCTAssertEqual(porter.port, "IOS 11")
-        XCTAssertEqual(porter.portVersion, .v11)
+        XCTAssertEqual(porter.value, "IOS 11")
+        XCTAssertEqual(porter.version, .v11)
     }
     
     func testPreferredPorter() {
@@ -84,13 +84,13 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 11", for: .v11)
         
         if #available(iOS 14.0, *) {
-            XCTAssertEqual(porter.port, "IOS 13")
+            XCTAssertEqual(porter.value, "IOS 13")
         } else if #available(iOS 13.0, *) {
-            XCTAssertEqual(porter.port, "IOS 13")
+            XCTAssertEqual(porter.value, "IOS 13")
         } else if #available(iOS 12.0, *) {
-            XCTAssertEqual(porter.port, "IOS 12")
+            XCTAssertEqual(porter.value, "IOS 12")
         } else if #available(iOS 11.0, *) {
-            XCTAssertEqual(porter.port, "IOS 11")
+            XCTAssertEqual(porter.value, "IOS 11")
         } else {
             XCTAssert(false)
         }
@@ -109,13 +109,13 @@ final class iOSPorterTests: XCTestCase {
         porter.add("IOS 11", for: .v11)
         
         if #available(iOS 14.0, *) {
-            XCTAssertEqual(porter.port, "IOS 13")
+            XCTAssertEqual(porter.value, "IOS 13")
         } else if #available(iOS 13.0, *) {
-            XCTAssertEqual(porter.port, "IOS 13")
+            XCTAssertEqual(porter.value, "IOS 13")
         } else if #available(iOS 12.0, *) {
-            XCTAssertEqual(porter.port, "IOS 12")
+            XCTAssertEqual(porter.value, "IOS 12")
         } else if #available(iOS 11.0, *) {
-            XCTAssertEqual(porter.port, "IOS 11")
+            XCTAssertEqual(porter.value, "IOS 11")
         } else {
             XCTAssert(false)
         }

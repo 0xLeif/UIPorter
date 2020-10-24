@@ -12,7 +12,7 @@ public class iOSPorter<Value> {
     private let defaultPort: Value
     private var ports: [iOSVersion: () -> Value] = [:]
     
-    public var portVersion: iOSVersion? {
+    public var version: iOSVersion? {
         if let version = iOSVersion.forcedVersion {
             return version
         }
@@ -61,12 +61,12 @@ public class iOSPorter<Value> {
         
         return nil
     }
-    public var port: Value {
+    public var value: Value {
         if let version = iOSVersion.forcedVersion {
             return ports[version]!()
         }
         
-        guard let version = portVersion else {
+        guard let version = version else {
             return defaultPort
         }
         
@@ -79,7 +79,10 @@ public class iOSPorter<Value> {
         self.defaultPort = port
     }
     
-    public func add(_ port: @autoclosure @escaping () -> Value, for version: iOSVersion) {
+    public func add(
+        _ port: @autoclosure @escaping () -> Value,
+        for version: iOSVersion
+    ) {
         ports[version] = port
     }
 }
