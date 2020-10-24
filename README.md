@@ -32,3 +32,34 @@ func testPorterVersion() {
     XCTAssertNotEqual(porter.port, "default value")
 }
 ```
+
+## iOS Example
+
+```swift
+import UIKit
+import SwiftUI
+import UIPorter
+import SwiftUIKit
+
+class ViewController: UIViewController {
+    let porter = iOSPorter(default: UIViewController { UIView(backgroundColor: .white).center { Label("default") }})
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if #available(iOS 14.0, *) {
+            // Example: Uses @StateObject
+            porter.add(UIHostingController(rootView: Text("Hello World 14")), for: .v14)
+        } else if #available(iOS 13.0, *) {
+            // Example: SwiftUI
+            porter.add(UIHostingController(rootView: Text("Hello World 13")), for: .v13)
+        }
+        
+        view.embed {
+            ContainerView(parent: self) {
+                porter.port
+            }
+        }
+    }
+}
+```
