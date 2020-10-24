@@ -1,8 +1,8 @@
 # UIPorter
 
-iOS Version Value Port; Use different values for different iOS versions.
+iOS and macOS Version Value-Port; Use different values for different iOS or macOS versions.
 
-## Basic Example
+## Basic iOSPorter Example
 
 ```swift
 func testPorterVersion() {
@@ -25,6 +25,49 @@ func testPorterVersion() {
     } else if #available(iOS 11.0, *) {
         XCTAssertEqual(porter.value, "IOS 11")
         XCTAssertEqual(porter.version, .v11)
+    } else {
+        XCTAssert(false)
+    }
+    
+    XCTAssertNotEqual(porter.value, "default value")
+}
+```
+
+## Basic macOSPorter Example
+
+```swift
+func testPorterVersion() {
+    let porter = macOSPorter(default: "default value")
+    
+    porter.add("macOS 10.10", for: .v10_10)
+    porter.add("macOS 10.11", for: .v10_11)
+    porter.add("macOS 10.12", for: .v10_12)
+    porter.add("macOS 10.13", for: .v10_13)
+    porter.add("macOS 10.14", for: .v10_14)
+    porter.add("macOS 10.15", for: .v10_15)
+    porter.add("macOS 11", for: .v11)
+    
+    if #available(macOS 11.0, *) {
+        XCTAssertEqual(porter.value, "macOS 11")
+        XCTAssertEqual(porter.version, .v11)
+    } else if #available(macOS 10.15, *) {
+        XCTAssertEqual(porter.value, "macOS 10.15")
+        XCTAssertEqual(porter.version, .v10_15)
+    } else if #available(macOS 10.14, *) {
+        XCTAssertEqual(porter.value, "macOS 10.14")
+        XCTAssertEqual(porter.version, .v10_14)
+    } else if #available(macOS 10.13, *) {
+        XCTAssertEqual(porter.value, "macOS 10.13")
+        XCTAssertEqual(porter.version, .v10_13)
+    } else if #available(macOS 10.12, *) {
+        XCTAssertEqual(porter.value, "macOS 10.12")
+        XCTAssertEqual(porter.version, .v10_12)
+    } else if #available(macOS 10.11, *) {
+        XCTAssertEqual(porter.value, "macOS 10.11")
+        XCTAssertEqual(porter.version, .v10_11)
+    } else if #available(macOS 10.10, *) {
+        XCTAssertEqual(porter.value, "macOS 10.10")
+        XCTAssertEqual(porter.version, .v10_10)
     } else {
         XCTAssert(false)
     }
