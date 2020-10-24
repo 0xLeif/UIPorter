@@ -12,6 +12,9 @@ class macOSPorterTests: XCTestCase {
     func testPorterVersion_default() {
         let porter = macOSPorter(default: "default value")
         
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
+        
         XCTAssertNil(porter.version)
         XCTAssertEqual(porter.value, "default value")
     }
@@ -51,6 +54,9 @@ class macOSPorterTests: XCTestCase {
         } else {
             XCTAssert(false)
         }
+        
+        print("\(#function): \(porter.value)")
+        print("\(#function): \(porter.version)")
         
         XCTAssertNotEqual(porter.value, "default value")
     }
